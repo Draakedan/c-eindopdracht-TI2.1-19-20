@@ -5,14 +5,13 @@ using Newtonsoft.Json;
 
 namespace SharedProject
 {
-    class TimeData
+    class DayData
     {
-        public string day { get; set; }
-        public List<string> times { get; set; }
+        public List<TimeData> times { get; set; }
 
-        public TimeData()
+        public DayData()
         {
-            times = new List<string>();
+            times = new List<TimeData>();
         }
 
         public string ToJSONString()
