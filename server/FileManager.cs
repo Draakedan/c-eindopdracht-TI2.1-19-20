@@ -49,6 +49,24 @@ namespace server
 
         }
 
+        public bool CheckPossibilityAppointment(Appointment appointment)
+        {
+            bool isPossible = false;
+            TimeData timeData = new TimeData();
+            foreach (TimeData data in PossibleTimes.times)
+            {
+                if (appointment.day == data.day)
+                {
+                    timeData = data;
+                    break;
+                }
+            }
+
+            isPossible = timeData.times.Contains(appointment.time);
+
+            return isPossible;
+        }
+
         public void SaveAppointment(Appointment appointment)
         {
             string filename = System.Environment.CurrentDirectory + "/appointments.txt";
