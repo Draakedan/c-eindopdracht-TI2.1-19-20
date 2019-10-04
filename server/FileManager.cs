@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SharedProject;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace server
 {
@@ -14,6 +15,38 @@ namespace server
         public FileManager()
         {
             appointments = new List<Appointment>();
+            LoadAvailableDates();
+            LoadAppointmentList();
+        }
+
+       // TODO: make method async/await
+        private void LoadAvailableDates()
+        {
+            string filename = System.Environment.CurrentDirectory + "/availableTimes.txt";
+            var stream = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            var reader = new StreamReader(stream);
+
+            string jsonData = reader.ReadToEnd();
+            reader.Close();
+            stream.Close();
+
+            PossibleTimes = JsonConvert.DeserializeObject<DayData>(jsonData);
+        }
+
+        private void LoadAppointmentList()
+        {
+            string filename = System.Environment.CurrentDirectory + "/appointments.txt";
+            var stream = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            var reader = new StreamReader(stream);
+            string jsonData;
+            while (!reader.EndOfStream)
+            {
+                jsonData = reader.ReadLine();
+                appointments.Add(JsonConvert.DeserializeObject<Appointment>(jsonData));
+            }
+            reader.Close();
+            stream.Close();
+
         }
 
         public void SaveAppointment(Appointment appointment)
