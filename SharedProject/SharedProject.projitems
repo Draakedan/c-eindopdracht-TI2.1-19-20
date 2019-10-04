@@ -9,6 +9,7 @@
     <Import_RootNamespace>SharedProject</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Appointment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DayData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TimeData.cs" />
   </ItemGroup>
