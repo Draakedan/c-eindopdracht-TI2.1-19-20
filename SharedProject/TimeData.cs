@@ -7,7 +7,10 @@ namespace SharedProject
 {
     class TimeData
     {
+        [JsonProperty(PropertyName = "day")]
         public string day { get; set; }
+
+        [JsonProperty(PropertyName = "times")]
         public List<string> times { get; set; }
 
         public TimeData()
