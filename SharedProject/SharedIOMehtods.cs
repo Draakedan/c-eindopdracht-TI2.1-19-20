@@ -6,7 +6,7 @@ using System.Net.Sockets;
 
 namespace SharedProject
 {
-    class SharedIOMehtods
+    public class SharedIOMehtods
     {
         public static void WriteTextMessage(TcpClient client, string message)
         {

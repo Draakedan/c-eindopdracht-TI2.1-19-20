@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace SharedProject
 {
-    class Appointment
+    public class Appointment
     {
         [JsonProperty(PropertyName = "username")]
         public string username { get; set; }

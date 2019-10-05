@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace SharedProject
 {
-    class DayData
+    public class DayData
     {
         [JsonProperty(PropertyName ="times")]
         public List<TimeData> times { get; set; }

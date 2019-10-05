@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace server
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
