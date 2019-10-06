@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientMain.cs" />
+    <Compile Include="DateSelectGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DateSelectGUI.Designer.cs">
+      <DependentUpon>DateSelectGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIData.cs" />
     <Compile Include="LogInGUI.cs">
       <SubType>Form</SubType>
@@ -77,6 +83,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DateSelectGUI.resx">
+      <DependentUpon>DateSelectGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogInGUI.resx">
       <DependentUpon>LogInGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,5 +100,6 @@
   <ItemGroup>
     <None Include="Resources\program background.png" />
   </ItemGroup>
+  <Import Project="..\SharedProject\SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -24,5 +24,10 @@ namespace Client
                 instance = new GUIData();
             return instance;
         }
+
+        public (string, string, string) getAllData()
+        {
+            return (username, day, time);
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogInGUI());
+            Application.Run(new DateSelectGUI());
             Application.Run(new ResultGUI());
         }
     }

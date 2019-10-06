@@ -4,22 +4,28 @@ using System.Text;
 using SharedProject;
 using System.IO;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace server
 {
     public class FileManager
     {
-        private DayData PossibleTimes;
+        public DayData PossibleTimes { get; set; }
         private List<Appointment> appointments;
 
         public FileManager()
         {
-            appointments = new List<Appointment>();
-            LoadAvailableDates();
+            loadFiles();
             LoadAppointmentList();
         }
+
+        private async void loadFiles()
+        {
+            appointments = new List<Appointment>();
+            PossibleTimes = await AsyncLoadAvailableDates();
+        }
        // TODO: make method async/await
-        private void LoadAvailableDates()
+        private Task<DayData> AsyncLoadAvailableDates()
         {
             string filename = "C:/Users/LENOVO/Desktop/technishe informatica files/2.1 2019-2020/C#/EindOpdracht/code/availableTimes.txt";
             var stream = new FileStream(filename, FileMode.Open, FileAccess.Read);
@@ -29,7 +35,9 @@ namespace server
             reader.Close();
             stream.Close();
 
-            PossibleTimes = JsonConvert.DeserializeObject<DayData>(jsonData);
+            Task<DayData> data = new Task<DayData>( () => { return JsonConvert.DeserializeObject<DayData>(jsonData); });
+            data.Start();
+            return data;
         }
 
         private void LoadAppointmentList()
@@ -98,10 +106,10 @@ namespace server
                 data.times.Remove(appointment.time);
                 if (data.times.Count == 0)
                     PossibleTimes.times.Remove(data);
-            }
-
+            }         
+                       
             string filename = "C:/Users/LENOVO/Desktop/technishe informatica files/2.1 2019-2020/C#/EindOpdracht/code/availableTimes.txt";
-
+            File.WriteAllText(filename, string.Empty);
             var stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             var writer = new StreamWriter(stream);
             writer.Write(PossibleTimes.ToJSONString());

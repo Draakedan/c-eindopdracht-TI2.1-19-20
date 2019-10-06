@@ -16,8 +16,6 @@ namespace Client
         public ResultGUI()
         {
             gui = GUIData.getInstance();
-            gui.day = "5-10-2019";
-            gui.time = "18:30";
             InitializeComponent();
             lbl_chosenData.Text = gui.day + "\n" + gui.time;
         }

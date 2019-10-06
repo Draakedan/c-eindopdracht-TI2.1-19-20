@@ -19,6 +19,13 @@ namespace SharedProject
         public Appointment()
         { }
 
+        public void setAllData((string, string, string)dataTuple )
+        {
+            username = dataTuple.Item1;
+            day = dataTuple.Item2;
+            time = dataTuple.Item3;
+        }
+
         public string ToJSONString()
         {
             return JsonConvert.SerializeObject(this);
